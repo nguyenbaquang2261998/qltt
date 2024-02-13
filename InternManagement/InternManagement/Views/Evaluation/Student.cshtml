@@ -1,0 +1,56 @@
+﻿@model InternshipEvaluation
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 col-md-8">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Đánh giá thực tập</h6>
+        </div>
+        <div class="card-body">
+            <div class="card shadow mb-4 mt-5">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Thông tin chi tiết:</h6>
+                </div>
+                <div class="card-body">
+                    <b>1. Thông tin đề tài: @ViewBag.DataInfo.TopicInfo.Name</b>
+                    <p>Yêu cầu: @ViewBag.DataInfo.TopicInfo.Content</p>
+                    <p>2. Thông tin sinh viên: @ViewBag.DataInfo.StudentInfo.Name - @ViewBag.DataInfo.StudentInfo.Identity</p>
+                    @* <p>
+                        5. Sinh viên đã đăng kí:
+                        @foreach (var item in Model.Students)
+                        {
+                        <p>@item.Identity - @item.Name</p>
+                        }
+                    </p> *@
+                </div>
+            </div>
+            <form action="/evaluation/student-create" method="post">
+                <input class="form-control" type="hidden" name="StudentId" value="@ViewBag.DataInfo.StudentInfo.Id">
+                <input class="form-control" type="hidden" name="TopicId" value="@ViewBag.DataInfo.TopicInfo.Id">
+                <input class="form-control" type="hidden" name="TopicName" value="@ViewBag.DataInfo.TopicInfo.Name">
+                <input class="form-control" type="hidden" name="TeacherId" value="@ViewBag.DataInfo.TopicInfo.TeacherId">
+                <div class="mb-3">
+                    <label for="content">Đánh giá người hướng dẫn</label>
+                    @Html.TextAreaFor(model => model.EvaluateTeacher, new { @id = "ckeditor", @class = "form-control" })
+                </div>
+                <div class="mb-3">
+                    <label for="content">Đánh giá người hướng dẫn</label>
+                    @Html.TextAreaFor(model => model.EvaluateTopic, new { @id = "ckeditor1", @class = "form-control" })
+                </div>
+                <input class="btn btn-success" type="submit" value="Xác nhận">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+@section Scripts{
+    <script>
+        CKEDITOR.replace("ckeditor");
+        CKEDITOR.config.height = 400;
+    </script>
+    <script>
+        CKEDITOR.replace("ckeditor1");
+        CKEDITOR.config.height = 400;
+    </script>
+}

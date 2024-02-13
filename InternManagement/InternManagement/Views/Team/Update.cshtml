@@ -1,0 +1,23 @@
+﻿@using InternManagement.Models
+@model Team
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 col-md-8">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cập nhật thông tin nhóm thực tập</h6>
+        </div>
+        <div class="card-body">
+            <form action="/team/update" method="post">
+                <input asp-for="Id" type="hidden" />
+                <div class="mb-3"><label for="address">Số lượng sinh viên tối đa</label><input asp-for="TeamSize" type="text" class="form-control" /></div>
+                <div class="mb-3">
+                    <label for="class">Đề tài</label>
+                    @Html.DropDownListFor(model => model.TopicId, ViewBag.DataTopics as SelectList, new { @class = "form-control" })
+                </div>
+                <input class="btn btn-success" type="submit" value="Xác nhận">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

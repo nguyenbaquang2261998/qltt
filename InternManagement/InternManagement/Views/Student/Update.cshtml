@@ -1,0 +1,29 @@
+﻿@using InternManagement.Models
+@model Student
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 col-md-8">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cập nhật thông tin sinh viên</h6>
+        </div>
+        <div class="card-body">
+            <form action="/student/update" method="post">
+                <input asp-for="Id" type="hidden" />
+                <div class="mb-3"><label for="name">Họ và tên</label><input asp-for="UserName" type="text" class="form-control" placeholder="Nguyễn Văn A" /></div>
+                <div class="mb-3"><label for="email">Email</label><input asp-for="Email" type="email" class="form-control" /></div>
+                <div class="mb-3"><label for="phone">Số điện thoại</label><input asp-for="Phone" type="text" class="form-control" /></div>
+                <div class="mb-3"><label for="subphone">Số điện thoại phụ</label><input asp-for="SubPhone" type="text" class="form-control" /></div>
+                <div class="mb-3"><label for="identity">Mã sinh viên</label><input asp-for="Identity" type="text" class="form-control" /></div>
+                <div class="mb-3"><label for="password">Mật khẩu</label><input asp-for="Password" type="password" class="form-control" /></div>
+                <div class="mb-3"><label for="address">Địa chỉ</label><input asp-for="Address" type="text" class="form-control" /></div>
+                <div class="mb-3">
+                    <label for="class">Mã lớp</label>
+                    @Html.DropDownListFor(model => model.ClassCode, ViewBag.DataClasses as SelectList, new { @class = "form-control" })
+                </div>
+                <input class="btn btn-success" type="submit" value="Xác nhận">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

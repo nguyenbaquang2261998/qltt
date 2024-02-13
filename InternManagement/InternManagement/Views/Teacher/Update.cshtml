@@ -1,0 +1,23 @@
+﻿@using InternManagement.Models
+@model Teacher
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 col-md-8">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cập nhật thông tin giảng viên</h6>
+        </div>
+        <div class="card-body">
+            <form action="/teacher/update" method="post">
+                <input asp-for="Id" type="hidden" />
+                <div class="mb-3"><label for="name">Tên giảng viên</label><input asp-for="Name" type="text" class="form-control" placeholder="Nguyễn Văn A" /></div>
+                <div class="mb-3"><label for="email">Số điện thoại</label><input asp-for="Phone" type="text" class="form-control" /></div>
+                <div class="mb-3"><label for="phone">Bộ môn</label><input asp-for="Subject" type="text" class="form-control" /></div>
+                <div class="mb-3"><label for="subphone">Học vị</label><input asp-for="Degree" type="text" class="form-control" /></div>
+                <div class="mb-3"><label for="identity">Quê quán</label><input asp-for="Address" type="text" class="form-control" /></div>
+                <input class="btn btn-success" type="submit" value="Xác nhận">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

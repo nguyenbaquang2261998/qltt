@@ -1,0 +1,52 @@
+﻿@*@using InternManagement.DTOs.Team
+@model TeamOutput*@
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 col-md-8">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Đăng kí thực tập</h6>
+        </div>
+        <div class="card-body">
+            <form action="/register-topic/team" method="get">
+                <div class="mb-3">
+                    <label for="class">Chọn nhóm</label>
+                    @Html.DropDownList("id", (IEnumerable<SelectListItem>)ViewBag.DataTeams as SelectList, new { @class = "form-control" })
+                </div>
+                <input class="btn btn-success" type="submit" value="Xem chi tiết">
+            </form>
+            @if (ViewBag.Show == true && Model != null)
+            {
+                <div class="card shadow mb-4 mt-5">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Thông tin chi tiết:</h6>
+                    </div>
+                    <div class="card-body">
+                        <p>1. Nhóm: @Model.Id</p>
+                        <p>2. Kì thực tập: @Model.SemesterName</p>
+                        <p>3. Đề tài: @Model.TopicName</p>
+                        <p>4. Số sinh viên tối đa: @Model.TeamSize</p>
+                        <p>
+                            5. Sinh viên đã đăng kí:
+                            @foreach (var item in Model.Students)
+                            {
+                            <p>@item.Identity - @item.Name</p>
+                            }
+                        </p>
+                    </div>
+                </div>
+            }
+            @if (ViewBag.Show == true && ViewBag.IsRegisted == false)
+            {
+                <form action="/register-topic/create" method="post">
+                    <div class="mb-3"><label for="reference">Mã sinh viên: @Model.StudentInfo.Identity</label></div>
+                    <div class="mb-3"><label for="reference">Tên sinh viên: @Model.StudentInfo.Name</label></div>
+                    <input class="form-control" id="studentId" type="hidden" name="StudentId" value="@Model.StudentInfo.Id">
+                    <input class="form-control" id="topicId" type="hidden" name="TopicId" value="@Model.TopicId">
+                    <input class="form-control" id="teamId" type="hidden" name="TeamId" value="@Model.Id">
+                    <input class="btn btn-success mt-5" type="submit" value="Đăng ký">
+                </form>
+            }
+        </div>
+    </div>
+</div>
+

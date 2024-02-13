@@ -1,0 +1,65 @@
+﻿@using InternManagement.DTOs.Evaluation
+@model List<RegisterTopicStudent>
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách đánh giá thực tập</h6>
+            <a href="/teacher/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-3"><i class="fas fa-plus fa-sm text-white-50"></i> Đăng kí thông tin</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Hiển thị <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> bản ghi</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Tìm kiếm:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Identity: activate to sort column descending" style="width: 262px;">Kì thực tập</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 194.5px;">Đề tài</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 109.766px;">Nhóm thực tập</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Phone: activate to sort column ascending" style="width: 188.094px;">GV hướng dẫn</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Address: activate to sort column ascending" style="width: 100.547px;">Trạng thái</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Address: activate to sort column ascending" style="width: 100.547px;">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">@item.SemesterName</td>
+                                            <td>@item.TopicName</td>
+                                            <td>@item.TeamId</td>
+                                            <td>@item.TeacherName</td>
+                                            <td>
+                                                @if (item.Status == 1)
+                                                {
+                                                    <p>Đã đánh giá</p>
+                                                }
+                                                else
+                                                {
+                                                    <p>Chưa đánh giá</p>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.Status == 0)
+                                                {
+                                                    <a href="/evaluation/student?id=@item.TopicId" class="zmdi zmdi-assignment display-block-mb-5">Đánh giá</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/evaluation/student-view?id=@item.TopicId" class="zmdi zmdi-table-of-contents display-block-mb-5">Xem lại</a>
+                                                    <a href="/" class="zmdi zmdi-download display-block-mb-5">Tải file</a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

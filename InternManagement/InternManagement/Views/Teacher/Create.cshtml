@@ -1,0 +1,20 @@
+﻿@model Teacher
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 col-md-8">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Đăng kí giảng viên hướng dẫn</h6>
+        </div>
+        <div class="card-body">
+            <form action="/teacher/create" method="post">
+                    <div class="mb-3"><label for="name">Tên giảng viên</label><input class="form-control" id="name" type="text" name="Name"></div>
+                    <div class="mb-3"><label for="email">Số điện thoại</label><input class="form-control" id="email" type="text" name="Phone"></div>
+                    <div class="mb-3"><label for="email">Bộ môn</label><input class="form-control" id="email" type="text" name="Subject"></div>
+                    <div class="mb-3"><label for="email">Học vị</label><input class="form-control" id="email" type="text" name="Degree"></div>
+                    <div class="mb-3"><label for="email">Quê quán</label><input class="form-control" id="email" type="text" name="Address"></div>
+                    <input class="btn btn-success" type="submit" value="Xác nhận">
+            </form>
+        </div>
+    </div>
+</div>
+

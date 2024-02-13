@@ -1,0 +1,17 @@
+﻿@model Semester
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 col-md-8">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Tạo kì thực tập</h6>
+        </div>
+        <div class="card-body">
+            <form action="/semester/create" method="post">
+                    <div class="mb-3"><label for="name">Tên kì thực tập</label><input class="form-control" id="name" type="text" name="Name" placeholder="Thực tập tốt nghiệp"></div>
+                    <div class="mb-3"><label for="email">Mô tả</label><input class="form-control" id="email" type="text" name="Description"></div>
+                    <input class="btn btn-success" type="submit" value="Xác nhận">
+            </form>
+        </div>
+    </div>
+</div>
+

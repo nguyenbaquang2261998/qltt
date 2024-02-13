@@ -1,0 +1,21 @@
+﻿@using InternManagement.DTOs.Topic
+@model TopicOuput
+<div class="container-fluid mt-3">
+    @*<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Cards</h1>
+    </div>*@
+    <div class="row">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Thông tin đề tài: @Model.Name</h6>
+            </div>
+            <div class="card-body">
+                <span>Kì hạn: @Model.Deadline</span>
+                <span>Giảng viên hướng dẫn: @Model.Teacher</span>
+                <span>Kì thực tập: @Model.Semester</span>
+                <span>Nội dung: @Html.Raw(Model.Content)</span>
+                <span>Tài liệu tham khảo: @Model.Reference</span>
+            </div>
+        </div>
+    </div>
+</div>
