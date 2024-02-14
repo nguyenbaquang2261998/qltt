@@ -1,0 +1,40 @@
+﻿@model TeacherEvaluation
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 mt-5 col-md-8">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Đánh giá thực tập</h6>
+        </div>
+        <div class="card-body">
+            <b>1. Thông tin đề tài: @ViewBag.DataInfo.TopicInfo.Name</b>
+            <p>Yêu cầu: @Html.Raw(ViewBag.DataInfo.TopicInfo.Content)</p>
+            <p>Thời gian: @ViewBag.DataInfo.TopicInfo.Deadline</p>
+            <p>Gv hướng dẫn: @Model.TeacherName</p>
+            <b>2. Thông tin sinh viên:</b>
+            <p>@ViewBag.DataInfo.StudentInfo.Name - @ViewBag.DataInfo.StudentInfo.Identity</p>
+            <b>3. Thông tin đánh giá của giảng viên hướng dẫn: </b>
+            <p class="mt-5">Thái độ</p>
+            <p>Điểm: @Model.AttitudePoint</p>
+            <p>Nhận xét: @Html.Raw(Model.AttitudeReview)</p>
+            <p class="mt-5">Quá trình</p>
+            <p>Điểm: @Model.ProgressPoint</p>
+            <p>Nhận xét: @Html.Raw(Model.ProgressReview)</p>
+            <p class="mt-5">Chất lượng</p>
+            <p>Điểm: @Model.QualityPoint</p>
+            <p>Nhận xét: @Html.Raw(Model.QualityReview)</p>
+
+            @{
+                var totalPoint = Model.AttitudePoint + Model.ProgressPoint + Model.QualityPoint;
+            }
+            <p class="mt-5">Tổng điểm: @totalPoint</p>
+            @if (totalPoint < 15)
+            {
+                <p style="color:red">Sinh viên không đủ điều kiện qua kì thực tập</p>
+            }
+            else
+            {
+                <p style="color:green">Sinh viên đủ điều kiện qua kì thực tập</p>
+            }
+        </div>
+    </div>
+</div>

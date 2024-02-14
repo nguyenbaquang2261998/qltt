@@ -61,20 +61,138 @@ namespace InternManagement.Controllers
             return View(res);
         }
 
-        [HttpGet]
-        public IActionResult Teacher()
+        [HttpGet("list-teacher")]
+        public IActionResult ListTeacher()
         {
+            var teacherId = HttpContext.Session.GetInt32("teacherId");
+            // lấy đề tài mà gv hướng dẫn
+            var topicSupports = _context.Topics.Where(x => x.TeacherId == teacherId).Select(x => x.Id).ToList();
+
+            // danh sách  sinh viên đăng kí đề tài
+            var regisTopic = _context.RegisterTopics.Where(x => topicSupports.Contains(x.TopicId)).ToList();
+
+            if (teacherId == null)
+            {
+                return View();
+            }
+            var registerTopics = (from rt in regisTopic
+                                  join t in _context.Topics on rt.TopicId equals t.Id
+                                  join ts in _context.Teams on rt.TeamId equals ts.Id
+                                  join tc in _context.Teachers on t.TeacherId equals tc.Id
+                                  join s in _context.Semesters on t.SemesterId equals s.Id
+                                  select new RegisterTopicStudent()
+                                  {
+                                      StudentId = rt.StudentId,
+                                      TopicId = rt.TopicId,
+                                      TopicName = t.Name,
+                                      TeamId = rt.TeamId,
+                                      TeacherId = tc.Id,
+                                      TeacherName = tc.Name,
+                                      SemesterId = t.SemesterId.Value,
+                                      SemesterName = s.Name
+                                  }).ToList();
+            var evaluation = _context.TeacherEvaluations.Where(x => x.TeacherId == teacherId).ToList();
+
+            var res = registerTopics.Select(x => new RegisterTopicStudent()
+            {
+                StudentId = x.StudentId,
+                TopicId = x.TopicId,
+                TopicName = x.TopicName,
+                TeamId = x.TeamId,
+                TeacherId = x.TeacherId,
+                TeacherName = x.TeacherName,
+                SemesterId = x.SemesterId,
+                SemesterName = x.SemesterName,
+                Status = (evaluation != null && evaluation.Count(e => e.TopicId == x.TopicId && e.StudentId == x.StudentId) > 0) ? 1 : 0
+            }).ToList();
+            return View(res);
+        }
+
+        [HttpGet("teacher")]
+        public IActionResult Teacher([FromQuery] int studentId, [FromQuery] int topicId)
+        {
+            var teacherId = HttpContext.Session.GetInt32("teacherId");
+
+            var res = new InternshipEvaluationInfo();
+            if (studentId > 0)
+            {
+                var studentInfo = _context.Students.FirstOrDefault(x => x.Id == studentId);
+                if (studentInfo != null)
+                {
+                    res.StudentInfo = new StudentInfo
+                    {
+                        Id = studentInfo.Id,
+                        Identity = studentInfo.Identity,
+                        Name = studentInfo.UserName
+                    };
+                }
+
+                var topicInfo = _context.Topics.FirstOrDefault(x => x.Id == topicId);
+                res.TopicInfo = new TopicInfo()
+                {
+                    Id = topicInfo.Id,
+                    Name = topicInfo.Name,
+                    Content = topicInfo.Content,
+                    TeacherId = topicInfo.TeacherId.Value
+                };
+                ViewBag.DataInfo = res;
+                return View();
+            }
             return View();
         }
 
-        [HttpPost("teacher")]
+        [HttpPost("teacher-create")]
         public IActionResult Teacher(TeacherEvaluation model)
         {
             try
             {
+                model.CreatedDate = DateTime.Now;
+                var teacher = _context.Teachers.FirstOrDefault(x => x.Id == model.Id);
+                model.TeacherName = teacher != null ? teacher.Name : "Hội đồng" ;
                 _context.TeacherEvaluations.Add(model);
                 _context.SaveChanges();
-                return RedirectToAction("list");
+                return RedirectToAction("ListTeacher");
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+        }
+
+        [HttpGet("teacher-view")]
+        public IActionResult TeacherView([FromQuery] int studentId, [FromQuery] int topicId)
+        {
+            try
+            {
+                var teacherId = HttpContext.Session.GetInt32("teacherId");
+                if (studentId != null)
+                {
+                    var res = new InternshipEvaluationInfo();
+                    var studentInfo = _context.Students.FirstOrDefault(x => x.Id == studentId);
+                    if (studentInfo != null)
+                    {
+                        res.StudentInfo = new StudentInfo
+                        {
+                            Id = studentInfo.Id,
+                            Identity = studentInfo.Identity,
+                            Name = studentInfo.UserName
+                        };
+                    }
+
+                    var topicInfo = _context.Topics.FirstOrDefault(x => x.Id == topicId);
+                    res.TopicInfo = new TopicInfo()
+                    {
+                        Id = topicInfo.Id,
+                        Name = topicInfo.Name,
+                        Content = topicInfo.Content,
+                        TeacherId = topicInfo.TeacherId.Value,
+                        Deadline = topicInfo.Deadline
+                    };
+                    ViewBag.DataInfo = res;
+                }
+                var evaluation = _context.TeacherEvaluations.FirstOrDefault(x => x.StudentId == studentId && x.TopicId == topicId);
+
+                return View(evaluation);
             }
             catch (Exception)
             {

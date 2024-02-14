@@ -135,7 +135,6 @@ namespace InternManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ClassName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -209,14 +208,26 @@ namespace InternManagement.Migrations
                     b.Property<int>("AttitudePoint")
                         .HasColumnType("int");
 
+                    b.Property<string>("AttitudeReview")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ProgressPoint")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProgressReview")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("QualityPoint")
                         .HasColumnType("int");
+
+                    b.Property<string>("QualityReview")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");

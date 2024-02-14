@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\InternManagement\\InternManagement\\InternManagement.csproj": {}
+    "E:\\qltt\\InternManagement\\InternManagement\\InternManagement.csproj": {}
   },
   "projects": {
-    "D:\\InternManagement\\InternManagement\\InternManagement.csproj": {
+    "E:\\qltt\\InternManagement\\InternManagement\\InternManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\InternManagement\\InternManagement\\InternManagement.csproj",
+        "projectUniqueName": "E:\\qltt\\InternManagement\\InternManagement\\InternManagement.csproj",
         "projectName": "InternManagement",
-        "projectPath": "D:\\InternManagement\\InternManagement\\InternManagement.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\InternManagement\\InternManagement\\obj\\",
+        "projectPath": "E:\\qltt\\InternManagement\\InternManagement\\InternManagement.csproj",
+        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+        "outputPath": "E:\\qltt\\InternManagement\\InternManagement\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -75,8 +79,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -88,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

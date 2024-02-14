@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@{
+    var studentId = Context.Session.GetInt32("studentId");
+    var teacherId = Context.Session.GetInt32("teacherId");
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -60,10 +65,13 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/student/list">Sinh viên</a>
-                        <a class="collapse-item" href="/teacher/list">Giảng viên</a>
-                        <a class="collapse-item" href="/semester/list">Kì thực tập</a>
-                        <a class="collapse-item" href="/topic/list?pageSize=10&pageIndex=1">Đề tài</a>
-                        <a class="collapse-item" href="/team/list">Nhóm thực tập</a>
+                        @if (teacherId != null)
+                        {
+                            <a class="collapse-item" href="/teacher/list">Giảng viên</a>
+                            <a class="collapse-item" href="/semester/list">Kì thực tập</a>
+                            <a class="collapse-item" href="/topic/list?pageSize=10&pageIndex=1">Đề tài</a>
+                            <a class="collapse-item" href="/team/list">Nhóm thực tập</a>
+                        }
                     </div>
                 </div>
             </li>
@@ -74,16 +82,26 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Đăng kí thực tập</span>
                 </a>
-                <a class="nav-link" href="/evaluation/list">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Sinh viên đánh giá</span>
-                </a>
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Giảng viên đánh giá</span>
+                @if (studentId != null)
+                {
+                    <a class="nav-link" href="/evaluation/list">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Sinh viên đánh giá</span>
+                    </a>
+                }
+                @if (teacherId != null)
+                {
+                    <a class="nav-link" href="/evaluation/list-teacher">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Giảng viên đánh giá</span>
+                    </a>
+                }
+
+                <a class="nav-link" href="/home/signout">
+                    <i class="fa fa-sign-out"></i>
+                    <span>Đăng xuất</span>
                 </a>
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

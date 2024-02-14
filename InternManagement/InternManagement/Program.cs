@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<InternManagementContext>(option => {
-    option.UseSqlServer("Data Source=DESKTOP-FDMQOAG;Initial Catalog=InternManagement;Integrated Security=True;TrustServerCertificate=True");
+    option.UseSqlServer("Data Source=DESKTOP-3GHMQUF\\SQLEXPRESS;Initial Catalog=InternManagement;Integrated Security=True;TrustServerCertificate=True");
 });
 builder.Services.AddSession(options =>
 {

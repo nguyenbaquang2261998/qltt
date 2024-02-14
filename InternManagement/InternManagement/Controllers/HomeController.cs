@@ -90,6 +90,21 @@ namespace InternManagement.Controllers
             return View();
         }
 
+        public IActionResult SignOut()
+        {
+            var teacherId = HttpContext.Session.GetInt32("teacherId");
+            var studentId = HttpContext.Session.GetInt32("studentId");
+            if (teacherId != null)
+            {
+                HttpContext.Session.Remove("teacherId");
+            }
+            if (studentId != null)
+            {
+                HttpContext.Session.Remove("studentId");
+            }
+            return RedirectToAction("SSO");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -5,125 +5,136 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = InternManagement
 build_property.RootNamespace = InternManagement
-build_property.ProjectDir = D:\InternManagement\InternManagement\
+build_property.ProjectDir = E:\qltt\InternManagement\InternManagement\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\InternManagement\InternManagement
+build_property.MSBuildProjectDirectory = E:\qltt\InternManagement\InternManagement
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/InternManagement/InternManagement/Views/Evaluation/List.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Evaluation/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZhbHVhdGlvblxMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Evaluation/Student.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Evaluation/ListTeacher.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZhbHVhdGlvblxMaXN0VGVhY2hlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/qltt/InternManagement/InternManagement/Views/Evaluation/Student.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZhbHVhdGlvblxTdHVkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Evaluation/StudentView.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Evaluation/StudentView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZhbHVhdGlvblxTdHVkZW50Vmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Evaluation/Teacher.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Evaluation/Teacher.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZhbHVhdGlvblxUZWFjaGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Home/Index.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Evaluation/TeacherView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZhbHVhdGlvblxUZWFjaGVyVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/qltt/InternManagement/InternManagement/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Home/SSO.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Home/SignOut.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduT3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/qltt/InternManagement/InternManagement/Views/Home/SSO.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTU08uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/RegisterTopic/Team.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/RegisterTopic/Team.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJUb3BpY1xUZWFtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Semester/Create.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Semester/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VtZXN0ZXJcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Semester/List.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Semester/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VtZXN0ZXJcTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Shared/Error.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Shared/_ValidationScriptsPartial.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Student/Create.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Student/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Student/Detail.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Student/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Student/List.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Student/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Student/Update.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Student/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Teacher/Create.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Teacher/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Teacher/List.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Teacher/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Teacher/Update.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Teacher/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Team/Create.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Team/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhbVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Team/List.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Team/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhbVxMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Team/Update.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Team/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhbVxVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Topic/Create.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Topic/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Topic/Detail.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Topic/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNcRGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Topic/List.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Topic/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNcTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Topic/Update.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Topic/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/_ViewImports.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/_ViewStart.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/InternManagement/InternManagement/Views/Shared/_Layout.cshtml]
+[E:/qltt/InternManagement/InternManagement/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-s7gmkysh4u

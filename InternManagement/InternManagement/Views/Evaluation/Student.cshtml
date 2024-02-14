@@ -12,15 +12,9 @@
                 </div>
                 <div class="card-body">
                     <b>1. Thông tin đề tài: @ViewBag.DataInfo.TopicInfo.Name</b>
-                    <p>Yêu cầu: @ViewBag.DataInfo.TopicInfo.Content</p>
+                    <p>Yêu cầu: </p>
+                    <p>@Html.Raw(ViewBag.DataInfo.TopicInfo.Content)</p>
                     <p>2. Thông tin sinh viên: @ViewBag.DataInfo.StudentInfo.Name - @ViewBag.DataInfo.StudentInfo.Identity</p>
-                    @* <p>
-                        5. Sinh viên đã đăng kí:
-                        @foreach (var item in Model.Students)
-                        {
-                        <p>@item.Identity - @item.Name</p>
-                        }
-                    </p> *@
                 </div>
             </div>
             <form action="/evaluation/student-create" method="post">
