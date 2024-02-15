@@ -18,7 +18,7 @@ namespace InternManagement.Controllers
         }
 
         [HttpGet("list")]
-        public IActionResult List([FromQuery] int pageSize, [FromQuery] int pageIndex)
+        public IActionResult List([FromQuery] int pageSize, [FromQuery] int pageIndex, [FromQuery] string keyword)
         {
             if (pageSize == 0 || pageIndex == 0)
             {
@@ -38,6 +38,11 @@ namespace InternManagement.Controllers
                                TopicId = t.TopicId,
                                TeamSize = t.TeamSize,
                            };
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                var keysearch = keyword.ToLower();
+                teams = teams.Where(x => x.SemesterName.ToLower().Contains(keysearch) || x.TopicName.ToLower().Contains(keysearch));
+            }
             var res = teams.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return View(res);
         }

@@ -2,6 +2,7 @@
 using InternManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text.RegularExpressions;
 using Xceed.Words.NET;
 
 namespace InternManagement.Controllers
@@ -20,7 +21,7 @@ namespace InternManagement.Controllers
 
 
         [HttpGet("list")]
-        public IActionResult List()
+        public IActionResult List([FromQuery] string keyword)
         {
             var studentId = HttpContext.Session.GetInt32("studentId");
             if (studentId == null)
@@ -58,11 +59,17 @@ namespace InternManagement.Controllers
                 SemesterName = x.SemesterName,
                 Status = (evaluation != null && evaluation.Count(e => e.TopicId == x.TopicId) > 0) ? 1 : 0
             }).ToList();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                var keysearch = keyword.ToLower();
+                res = res.Where(x => x.TopicName.ToLower().Contains(keysearch) || x.TeacherName.ToLower().Contains(keysearch) || x.SemesterName.ToLower().Contains(keysearch)).ToList();
+            }
             return View(res);
         }
 
         [HttpGet("list-teacher")]
-        public IActionResult ListTeacher()
+        public IActionResult ListTeacher([FromQuery] string keyword)
         {
             var teacherId = HttpContext.Session.GetInt32("teacherId");
             // lấy đề tài mà gv hướng dẫn
@@ -105,6 +112,12 @@ namespace InternManagement.Controllers
                 SemesterName = x.SemesterName,
                 Status = (evaluation != null && evaluation.Count(e => e.TopicId == x.TopicId && e.StudentId == x.StudentId) > 0) ? 1 : 0
             }).ToList();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                var keysearch = keyword.ToLower();
+                res = res.Where(x => x.TopicName.ToLower().Contains(keysearch) || x.TeacherName.ToLower().Contains(keysearch) || x.SemesterName.ToLower().Contains(keysearch)).ToList();
+            }
             return View(res);
         }
 
@@ -241,7 +254,7 @@ namespace InternManagement.Controllers
                 model.TeacherName = teacher.Name;
 
                 // tạo file
-                var file = SaveToDocx();
+                var file = SaveToDocx(model);
                 model.Docs = file;
 
                 _context.InternshipEvaluations.Add(model);
@@ -295,7 +308,7 @@ namespace InternManagement.Controllers
             }
         }
 
-        public string SaveToDocx()
+        public string SaveToDocx(InternshipEvaluation model)
         {
             var now = Guid.NewGuid().ToString();
             var fileName = now + ".docx";
@@ -303,12 +316,35 @@ namespace InternManagement.Controllers
             var doc = DocX.Create(fileName);
 
             // Insert your data into the document
-            doc.InsertParagraph("This is a sample text.");
+            var student = _context.Students.FirstOrDefault(x => x.Id == model.StudentId);
+            doc.InsertParagraph("Cộng hòa xã hội chủ nghĩa Việt Nam");
+            doc.InsertParagraph("Độc lập tự do hạnh phúc");
+            doc.InsertParagraph("------------------------");
+            doc.InsertParagraph("ĐÁNH GIÁ KẾT QUẢ THỰC TẬP");
+            doc.InsertParagraph("Sinh viên: " + student.UserName);
+            doc.InsertParagraph("Mã sinh viên: " + student.UserName);
+            doc.InsertParagraph("Đề tài: " + model.TopicName);
+            doc.InsertParagraph("GV hướng dẫn: " + model.TeacherName);
+
+            var teacherReview = StripHtml(model.EvaluateTeacher);
+            doc.InsertParagraph("1.Đánh giá quá trình thực tập:");
+            doc.InsertParagraph(teacherReview);
+
+            var topicReview = StripHtml(model.EvaluateTopic);
+            doc.InsertParagraph("2.Đánh giá kết quả:");
+            doc.InsertParagraph(topicReview);
+
+            doc.InsertParagraph("Ngày thực hiện: " + DateTime.Now.ToString("dd-MM-yyyy"));
 
             // Save the document
             doc.Save();
 
             return fileName;
+        }
+
+        public static string StripHtml(string input)
+        {
+            return Regex.Replace(input, "<.*?>", string.Empty);
         }
     }
 }

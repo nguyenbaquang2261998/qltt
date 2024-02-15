@@ -19,7 +19,7 @@ namespace InternManagement.Controllers
         }
 
         [HttpGet("list")]
-        public IActionResult List([FromQuery] int pageSize, [FromQuery] int pageIndex)
+        public IActionResult List([FromQuery] int pageSize, [FromQuery] int pageIndex, [FromQuery] string keyword)
         {
             if (pageSize == 0 || pageIndex == 0)
             {
@@ -44,6 +44,11 @@ namespace InternManagement.Controllers
                                SubPhone = s.SubPhone,
                                Password = s.Password
                            };
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                var keysearch = keyword.ToLower();
+                students = students.Where(x => x.UserName.ToLower().Contains(keysearch));
+            }
             var res = students.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return View(res);
         }

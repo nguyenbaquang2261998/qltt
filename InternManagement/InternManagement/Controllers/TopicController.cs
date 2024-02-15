@@ -18,7 +18,7 @@ namespace InternManagement.Controllers
             _context = context;
         }
         [HttpGet("list")]
-        public IActionResult List([FromQuery] int pageSize, [FromQuery] int pageIndex)
+        public IActionResult List([FromQuery] int pageSize, [FromQuery] int pageIndex, [FromQuery] string keyword)
         {
             if (pageSize == 0 || pageIndex == 0)
             {
@@ -39,6 +39,11 @@ namespace InternManagement.Controllers
                              Teacher = teacher.Name,
                              CreatedDate = topic.CreatedDate
                          };
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                var keyserch = keyword.ToLower();
+                topics = topics.Where(x => x.Name.ToLower().Contains(keyserch) || x.Teacher.ToLower().Contains(keyserch) || x.Semester.ToLower().Contains(keyserch));
+            }
             return View(topics.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList());
         }
 

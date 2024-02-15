@@ -49,4 +49,14 @@
         </div>
     </div>
 </div>
+@if (TempData["ErrorMessage"] != null)
+{
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        // Display a success popup using a library like SweetAlert or any other modal library
+        $(document).ready(function() {
+            alert('Vui lòng hủy đăng ký nhóm cũ và đăng ký lại');
+        });
+    </script>
+}
 

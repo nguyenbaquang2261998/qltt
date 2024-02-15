@@ -15,15 +15,22 @@ namespace InternManagement.Controllers
             _context = context;
         }
         [HttpGet("list")]
-        public IActionResult List([FromQuery] int pageSize, [FromQuery] int pageIndex)
+        public IActionResult List([FromQuery] int pageSize, [FromQuery] int pageIndex, [FromQuery] string keyword)
         {
             if (pageSize == 0 || pageIndex == 0)
             {
                 pageIndex = 1;
                 pageSize = 10;
             }
-            var students = _context.Semesters.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            return View(students);
+            var semesters = _context.Semesters.AsQueryable();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                var keysearch = keyword.ToLower();
+                semesters = semesters.Where(x => x.Name.ToLower().Contains(keysearch));
+            }
+            semesters.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            var res = semesters.ToList();
+            return View(res);
         }
 
         [HttpGet("detail")]

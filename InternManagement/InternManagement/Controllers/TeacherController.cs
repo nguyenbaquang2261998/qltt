@@ -16,15 +16,22 @@ namespace InternManagement.Controllers
         }
 
         [HttpGet("list")]
-        public IActionResult List([FromQuery] int pageSize, [FromQuery] int pageIndex)
+        public IActionResult List([FromQuery] int pageSize, [FromQuery] int pageIndex, [FromQuery] string keyword)
         {
             if (pageSize == 0 || pageIndex == 0)
             {
                 pageIndex = 1;
                 pageSize = 10;
             }
-            var students = _context.Teachers.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            return View(students);
+            var teachers = _context.Teachers.AsQueryable();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                var keysearch = keyword.ToLower();
+                teachers = teachers.Where(x => x.Name.ToLower().Contains(keysearch));
+            }
+            teachers.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            var res = teachers.ToList();
+            return View(res);
         }
 
         [HttpGet("detail")]

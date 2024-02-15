@@ -1,4 +1,5 @@
 ﻿using InternManagement.DTOs.Access;
+using InternManagement.DTOs.Home;
 using InternManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -18,6 +19,16 @@ namespace InternManagement.Controllers
 
         public IActionResult Index()
         {
+            var res = new List<DashboardView>();
+            var topicPassPercents = (from s in _context.Semesters
+                              select new DashboardView()
+                              {
+                                  SemesterName = s.Name,
+                                  StudentPass = (from t in _context.TeacherEvaluations join tp in _context.Topics on t.TopicId equals tp.Id where (t.AttitudePoint + t.ProgressPoint + t.QualityPoint) >= 15 select t).Count(),
+                                  Students = (from t in _context.TeacherEvaluations join tp in _context.Topics on t.TopicId equals tp.Id select t).Count(),
+                              }).ToList();
+
+            ViewBag.TopicPassPercents = topicPassPercents;
             return View();
         }
 

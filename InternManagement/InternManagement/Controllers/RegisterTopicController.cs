@@ -120,11 +120,16 @@ namespace InternManagement.Controllers
                 {
                     return View();
                 }
+
+                // kiểm tra đã đki đề tài chưa
+                var studentRegis = _context.RegisterTopics.FirstOrDefault(x => x.StudentId == model.StudentId && x.TopicId == model.TopicId);
+                if (studentRegis != null)
+                {
+                    TempData["ErrorMessage"] = "Bạn đã đăng kí nhóm khác, vui lòng hủy đăng kí trước khi đăng kí lại";
+                    return RedirectToAction("team");
+                }
                 _context.Add(model);
                 _context.SaveChanges();
-
-                TempData["SuccessMessage"] = "Cập nhật thành công thông tin sinh viên";
-
                 return RedirectToAction("team"); // Redirect to the desired view
             }
             catch (Exception e)
