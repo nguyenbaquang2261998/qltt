@@ -62,13 +62,24 @@ namespace InternManagement.Controllers
                               }).ToList();
             var teacherEvaluation = _context.TeacherEvaluations.Where(x => percentPass.Select(p => p.StudentId).Contains(x.StudentId));
 
-            ViewBag.DataPercents = percentPass.Select(x => new PercentPass()
+            var percentPasses = percentPass.Select(x => new PercentPass()
             {
                 StudentId = x.StudentId,
                 StudentName = x.StudentName,
-                Point = teacherEvaluation.Where(t => t.StudentId == x.StudentId).FirstOrDefault() != null ? 
-                (teacherEvaluation.Where(t => t.StudentId == x.StudentId).FirstOrDefault().AttitudePoint + teacherEvaluation.Where(t => t.StudentId == x.StudentId).FirstOrDefault().ProgressPoint + teacherEvaluation.Where(t => t.StudentId == x.StudentId).FirstOrDefault().QualityPoint) : 0
+                AttitudePoint = teacherEvaluation.Where(t => t.StudentId == x.StudentId).FirstOrDefault() != null ? 
+                (teacherEvaluation.Where(t => t.StudentId == x.StudentId).FirstOrDefault().AttitudePoint) : 0,
+                ProcessPoint = teacherEvaluation.Where(t => t.StudentId == x.StudentId).FirstOrDefault() != null ?
+                (teacherEvaluation.Where(t => t.StudentId == x.StudentId).FirstOrDefault().ProgressPoint) : 0,
+                QualityPoint = teacherEvaluation.Where(t => t.StudentId == x.StudentId).FirstOrDefault() != null ?
+                (teacherEvaluation.Where(t => t.StudentId == x.StudentId).FirstOrDefault().QualityPoint) : 0,
             }).ToList();
+
+            ViewBag.DataPercents = percentPasses;
+            ViewBag.TotalRegis = percentPasses.Count;
+            ViewBag.TotalPass = percentPasses.Count(x => (x.AttitudePoint + x.ProcessPoint + x.QualityPoint) > 15);
+
+            var topics = _context.Topics.Where(x => x.SemesterId == id).ToList();
+            ViewBag.DataTopics = topics;
 
             return View("index");
         }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TF1cot9owrn1NImpRdDLELtTCAo/XJgU22YfrVErpfM=",
+  "Hash": "tFf4Ss1+n5abDd5hPPuAy3hBz3VtrqXyJKR723uR87A=",
   "Source": "InternManagement",
   "BasePath": "_content/InternManagement",
   "Mode": "Default",
@@ -6866,6 +6866,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\template\\css\\sb-admin-2.min.css"
+    },
+    {
+      "Identity": "E:\\qltt\\InternManagement\\InternManagement\\wwwroot\\template\\img\\c6e26aa0-a3c0-446b-952d-0fd58303177b.jpg",
+      "SourceId": "InternManagement",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\qltt\\InternManagement\\InternManagement\\wwwroot\\",
+      "BasePath": "_content/InternManagement",
+      "RelativePath": "template/img/c6e26aa0-a3c0-446b-952d-0fd58303177b.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\template\\img\\c6e26aa0-a3c0-446b-952d-0fd58303177b.jpg"
     },
     {
       "Identity": "E:\\qltt\\InternManagement\\InternManagement\\wwwroot\\template\\img\\undraw_posting_photo.svg",

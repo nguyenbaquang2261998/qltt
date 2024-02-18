@@ -10584,9 +10584,9 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
-  background-position: center;
-  background-size: cover;
+    background: url("/template/img/c6e26aa0-a3c0-446b-952d-0fd58303177b.jpg");
+    background-position: center;
+    background-size: cover;
 }
 
 .bg-register-image {

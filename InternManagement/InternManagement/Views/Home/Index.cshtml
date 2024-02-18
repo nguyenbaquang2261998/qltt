@@ -224,11 +224,41 @@
                         </form>
                         @if (ViewBag.DataPercents != null)
                         {
+                            var percent = (ViewBag.TotalPass / (float)ViewBag.TotalRegis) * 100;
+                            <h4 class="small font-weight-bold">Tỉ lệ qua thực tập <span class="float-right">@percent%</span></h4>
+                            <div class="progress mb-4">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: @percent%" aria-valuenow="@percent" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Tổng số đề tài: @ViewBag.DataTopics.Count</h6>
+                                </div>
+                                <div class="card-body">
+                                    @{
+                                        var indexTopic = 1;
+                                    }
+                                    @foreach (var item in ViewBag.DataTopics)
+                                    {
+                                        <p>@indexTopic. @item.Name</p>
+                                        indexTopic++;
+                                    }
+                                </div>
+                            </div>
                             var index = 1;
                             foreach (var item in ViewBag.DataPercents)
                             {
-                                <h4 class="small font-weight-bold">@index. @item.StudentName @if (item.Point > 15) {<span class="float-right" style="color:#1cc88a">Qua</span>} else {<span class="float-right" style="color:#e74a3b">Trượt</span>}</h4>
-                                index++;                            
+                                var point = item.AttitudePoint + item.ProcessPoint + item.QualityPoint;
+                                <h4 class="small font-weight-bold">
+                                    @index. @item.StudentName @if (point > 15)
+                                    {
+                                        <span class="float-right" style="color:#1cc88a">Thái độ: @item.AttitudePoint _____ Quá trình: @item.ProcessPoint ____ Chất lượng: @item.QualityPoint ____ Qua</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="float-right" style="color:#e74a3b">Thái độ: @item.AttitudePoint _____ Quá trình: @item.ProcessPoint ____ Chất lượng: @item.QualityPoint ____ Trượt</span>
+                                    }
+                                </h4>
+                                index++;
                             }
                         }
                     </div>

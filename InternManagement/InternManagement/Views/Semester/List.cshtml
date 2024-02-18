@@ -29,8 +29,7 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Identity: activate to sort column descending" style="width: 262px;">Id</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 194.5px;">Tên kì thực tập</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 429.766px;">Mô tả</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Phone: activate to sort column ascending" style="width: 188.094px;">Số sinh viên tối đa</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Address: activate to sort column ascending" style="width: 100.547px;">Đã đăng kí</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Address: activate to sort column ascending" style="width: 100.547px;">Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,8 +39,10 @@
                                             <td class="sorting_1">@item.Id</td>
                                             <td>@item.Name</td>
                                             <td>@item.Description</td>
-                                            <td>@item.Target</td>
-                                            <td>@item.TotalRegis</td>
+                                            <td>
+                                                <a href="/semester/update?id=@item.Id" class="zmdi zmdi-assignment display-block-mb-5">Sửa</a>
+                                                <a onclick="Delete(@item.Id)" class="zmdi zmdi-delete display-block-mb-5">Xóa</a>
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>
@@ -71,4 +72,42 @@
             document.getElementById("searchForm").submit();
         }
     });
+</script>
+
+<script>
+    function Delete(Id) {
+        var data = {
+            Id: Id,
+        };
+        var title = "Bạn có đồng ý xóa dữ liệu này không?";
+        var url = '/semester/delete/' + Id;
+        swal({
+            title: title,
+            icon: "warning",
+            buttons: {
+                ok: "Xác nhận",
+                cancel: "Hủy",
+            }
+        }).then((isConfirm) => {
+            if (isConfirm != 'ok') {
+
+            } else {
+                $.post(url, data,
+                    function(rs) {
+                        if (rs.status > 0) {
+                            swal({
+                                title: "Xóa thành công!",
+                                text: "Dữ liệu của bạn đã được cập nhật!",
+                                icon: "success",
+                            }).then(function(isConfirm) {
+                                window.location.href = '/semester/list';
+                            });
+                        }
+                        else {
+                            toastr.error(rs.message);
+                        }
+                    });
+            }
+        });
+    }
 </script>

@@ -62,5 +62,43 @@ namespace InternManagement.Controllers
                 return View();
             }
         }
+        [HttpGet("update")]
+        public IActionResult Update([FromQuery] int id)
+        {
+            var res = _context.Semesters.Find(id);
+            return View(res);
+        }
+
+        [HttpPost("update")]
+        public IActionResult Update(Semester model)
+        {
+            try
+            {
+                if (model == null)
+                {
+                    return View();
+                }
+
+                _context.Semesters.Update(model);
+                _context.SaveChanges();
+
+                TempData["SuccessMessage"] = "Thành công";
+
+                return RedirectToAction("list"); // Redirect to the desired view
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
+        }
+
+        [HttpPost("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var semester = _context.Semesters.Find(id);
+            var result = _context.Semesters.Remove(semester);
+            _context.SaveChanges();
+            return Json(new { status = 1, message = "Xóa thành công" });
+        }
     }
 }

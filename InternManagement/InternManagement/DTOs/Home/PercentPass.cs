@@ -4,6 +4,8 @@
     {
         public int StudentId { get; set; }
         public string StudentName { get; set; }
-        public int Point { get; set; }
+        public int AttitudePoint { get; set; }
+        public int ProcessPoint { get; set; }
+        public int QualityPoint { get; set; }
     }
 }
