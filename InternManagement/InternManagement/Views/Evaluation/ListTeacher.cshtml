@@ -30,6 +30,7 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Identity: activate to sort column descending" style="width: 262px;">Kì thực tập</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 194.5px;">Đề tài</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 109.766px;">Nhóm thực tập</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Phone: activate to sort column ascending" style="width: 188.094px;">Tên sinh viên</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Phone: activate to sort column ascending" style="width: 188.094px;">GV hướng dẫn</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Address: activate to sort column ascending" style="width: 100.547px;">Trạng thái</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Address: activate to sort column ascending" style="width: 100.547px;">Thao tác</th>
@@ -42,6 +43,7 @@
                                             <td class="sorting_1">@item.SemesterName</td>
                                             <td>@item.TopicName</td>
                                             <td>@item.TeamId</td>
+                                            <td>@item.StudentName</td>
                                             <td>@item.TeacherName</td>
                                             <td>
                                                 @if (item.Status == 1)
@@ -56,11 +58,11 @@
                                             <td>
                                                 @if (item.Status == 0)
                                                 {
-                                                    <a href="/evaluation/teacher?studentId=@item.TopicId&topicId=@item.TopicId" class="zmdi zmdi-assignment display-block-mb-5">Đánh giá</a>
+                                                    <a href="/evaluation/teacher?studentId=@item.StudentId&topicId=@item.TopicId" class="zmdi zmdi-assignment display-block-mb-5">Đánh giá</a>
                                                 }
                                                 else
                                                 {
-                                                    <a href="/evaluation/teacher-view?studentId=@item.TopicId&topicId=@item.TopicId" class="zmdi zmdi-table-of-contents display-block-mb-5">Xem lại</a>
+                                                    <a href="/evaluation/teacher-view?studentId=@item.StudentId&topicId=@item.TopicId" class="zmdi zmdi-table-of-contents display-block-mb-5">Xem lại</a>
                                                 }
                                             </td>
                                         </tr>

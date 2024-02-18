@@ -11,10 +11,10 @@
                     <h6 class="m-0 font-weight-bold text-primary">Thông tin chi tiết:</h6>
                 </div>
                 <div class="card-body">
-                    <b>1. Thông tin đề tài: @ViewBag.DataInfo.TopicInfo.Name</b>
+                    <b>Thông tin đề tài: @ViewBag.DataInfo.TopicInfo.Name</b>
                     <p>Yêu cầu: </p>
                     <p>@Html.Raw(ViewBag.DataInfo.TopicInfo.Content)</p>
-                    <p>2. Thông tin sinh viên: @ViewBag.DataInfo.StudentInfo.Name - @ViewBag.DataInfo.StudentInfo.Identity</p>
+                    @*<p>2. Thông tin sinh viên: @ViewBag.DataInfo.StudentInfo.Name - @ViewBag.DataInfo.StudentInfo.Identity</p>*@
                 </div>
             </div>
             <form action="/evaluation/student-create" method="post">

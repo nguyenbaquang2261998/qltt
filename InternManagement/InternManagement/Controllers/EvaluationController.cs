@@ -12,11 +12,13 @@ namespace InternManagement.Controllers
     {
         private readonly ILogger<EvaluationController> _logger;
         private readonly InternManagementContext _context;
+        private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
 
-        public EvaluationController(ILogger<EvaluationController> logger, InternManagementContext context)
+        public EvaluationController(ILogger<EvaluationController> logger, InternManagementContext context, Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
         {
             _logger = logger;
             _context = context;
+            _environment = environment;
         }
 
 
@@ -87,9 +89,11 @@ namespace InternManagement.Controllers
                                   join ts in _context.Teams on rt.TeamId equals ts.Id
                                   join tc in _context.Teachers on t.TeacherId equals tc.Id
                                   join s in _context.Semesters on t.SemesterId equals s.Id
+                                  join st in _context.Students on rt.StudentId equals st.Id
                                   select new RegisterTopicStudent()
                                   {
                                       StudentId = rt.StudentId,
+                                      StudentName = st.UserName,
                                       TopicId = rt.TopicId,
                                       TopicName = t.Name,
                                       TeamId = rt.TeamId,
@@ -103,6 +107,7 @@ namespace InternManagement.Controllers
             var res = registerTopics.Select(x => new RegisterTopicStudent()
             {
                 StudentId = x.StudentId,
+                StudentName = x.StudentName,
                 TopicId = x.TopicId,
                 TopicName = x.TopicName,
                 TeamId = x.TeamId,
@@ -311,7 +316,8 @@ namespace InternManagement.Controllers
         public string SaveToDocx(InternshipEvaluation model)
         {
             var now = Guid.NewGuid().ToString();
-            var fileName = now + ".docx";
+            string wwwPath = _environment.WebRootPath;
+            var fileName = wwwPath + "\\upload\\" + now + ".docx";
             // Create a new document
             var doc = DocX.Create(fileName);
 
@@ -341,6 +347,41 @@ namespace InternManagement.Controllers
 
             return fileName;
         }
+
+        //public string TeacherSaveToDocx(TeacherEvaluation model)
+        //{
+        //    var now = Guid.NewGuid().ToString();
+        //    string wwwPath = _environment.WebRootPath;
+        //    var fileName = wwwPath + "\\upload\\" + now + ".docx";
+        //    // Create a new document
+        //    var doc = DocX.Create(fileName);
+
+        //    // Insert your data into the document
+        //    var student = _context.Students.FirstOrDefault(x => x.Id == model.StudentId);
+        //    doc.InsertParagraph("Cộng hòa xã hội chủ nghĩa Việt Nam");
+        //    doc.InsertParagraph("Độc lập tự do hạnh phúc");
+        //    doc.InsertParagraph("------------------------");
+        //    doc.InsertParagraph("ĐÁNH GIÁ KẾT QUẢ THỰC TẬP");
+        //    doc.InsertParagraph("Sinh viên: " + student.UserName);
+        //    doc.InsertParagraph("Mã sinh viên: " + student.UserName);
+        //    doc.InsertParagraph("Đề tài: " + model.TopicName);
+        //    doc.InsertParagraph("GV hướng dẫn: " + model.TeacherName);
+
+        //    var teacherReview = StripHtml(model.EvaluateTeacher);
+        //    doc.InsertParagraph("1.Đánh giá quá trình thực tập:");
+        //    doc.InsertParagraph(teacherReview);
+
+        //    var topicReview = StripHtml(model.EvaluateTopic);
+        //    doc.InsertParagraph("2.Đánh giá kết quả:");
+        //    doc.InsertParagraph(topicReview);
+
+        //    doc.InsertParagraph("Ngày thực hiện: " + DateTime.Now.ToString("dd-MM-yyyy"));
+
+        //    // Save the document
+        //    doc.Save();
+
+        //    return fileName;
+        //}
 
         public static string StripHtml(string input)
         {

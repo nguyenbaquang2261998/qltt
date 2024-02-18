@@ -188,7 +188,6 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Trang chủ quản lý sinh viên thực tập</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
         </div>
         <!-- Content Row -->
         <div class="row">
@@ -199,16 +198,38 @@
                 <!-- Project Card Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Số sinh viên qua kì thực tập</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Thông tin các kì thực tập</h6>
                     </div>
                     <div class="card-body">
                         @foreach (var item in ViewBag.TopicPassPercents)
                         {
-                            var percent = (item.StudentPass / item.Students) * 100;
-                            <h4 class="small font-weight-bold">@item.SemesterName <span class="float-right">@percent%</span></h4>
-                            <div class="progress mb-4">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: @percent%" aria-valuenow="@percent" aria-valuemin="0" aria-valuemax="100"></div>
+                            <h4 class="small font-weight-bold">@item.SemesterName <span class="float-right">@item.StudentRegister sinh viên đăng kí</span></h4>
+                        }
+                    </div>
+                </div>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Thông kê sinh viên qua/ trượt</h6>
+                    </div>
+                    <div class="card-body">
+                        <form action="/home/fillter" method="get">
+                            <label for="class">Chọn kì thực tập</label>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    @Html.DropDownList("id", (IEnumerable<SelectListItem>)ViewBag.DataSemesters as SelectList, new { @class = "form-control" })
+                                </div>
+                                <input class="btn btn-success" style="height: 40px;" type="submit" value="Xem chi tiết">
                             </div>
+                        </form>
+                        @if (ViewBag.DataPercents != null)
+                        {
+                            var index = 1;
+                            foreach (var item in ViewBag.DataPercents)
+                            {
+                                <h4 class="small font-weight-bold">@index. @item.StudentName @if (item.Point > 15) {<span class="float-right" style="color:#1cc88a">Qua</span>} else {<span class="float-right" style="color:#e74a3b">Trượt</span>}</h4>
+                                index++;                            
+                            }
                         }
                     </div>
                 </div>

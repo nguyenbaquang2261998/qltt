@@ -3,6 +3,7 @@
     public class RegisterTopicStudent
     {
         public int StudentId { get; set; }
+        public string StudentName { get; set; }
         public int SemesterId { get; set; }
         public string SemesterName { get; set; }
         public int TeacherId { get; set; }
