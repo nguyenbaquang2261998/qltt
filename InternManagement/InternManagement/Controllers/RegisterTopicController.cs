@@ -123,6 +123,14 @@ namespace InternManagement.Controllers
 
                 // kiểm tra đã đki đề tài chưa
                 var studentRegis = _context.RegisterTopics.FirstOrDefault(x => x.StudentId == model.StudentId && x.TopicId == model.TopicId);
+
+                var maxRegis = _context.RegisterTopics.Count(x => x.TeamId == model.TeamId);
+                var team = _context.Teams.FirstOrDefault(x => x.Id == model.TeamId);
+                if (maxRegis >= team.TeamSize)
+                {
+                    TempData["ErrorMessage"] = "Số lượng sinh viên đăng kí vượt quá giới hạn, vui lòng chọn nhóm khác";
+                    return RedirectToAction("team");
+                }
                 if (studentRegis != null)
                 {
                     TempData["ErrorMessage"] = "Bạn đã đăng kí nhóm khác, vui lòng hủy đăng kí trước khi đăng kí lại";
