@@ -70,6 +70,49 @@ namespace InternManagement.Controllers
             return View(res);
         }
 
+        [HttpGet("list-student-evaluation")]
+        public IActionResult ListStudentEvaluation([FromQuery] string keyword)
+        {
+            var registerTopics = (from rt in _context.RegisterTopics
+                                  join t in _context.Topics on rt.TopicId equals t.Id
+                                  join ts in _context.Teams on rt.TeamId equals ts.Id
+                                  join tc in _context.Teachers on t.TeacherId equals tc.Id
+                                  join s in _context.Semesters on t.SemesterId equals s.Id
+                                  where rt.StudentId > 0
+                                  select new RegisterTopicStudent()
+                                  {
+                                      StudentId = rt.StudentId,
+                                      TopicId = rt.TopicId,
+                                      TopicName = t.Name,
+                                      TeamId = rt.TeamId,
+                                      TeacherId = tc.Id,
+                                      TeacherName = tc.Name,
+                                      SemesterId = t.SemesterId.Value,
+                                      SemesterName = s.Name
+                                  }).ToList();
+            var evaluation = _context.InternshipEvaluations.Where(x => x.StudentId > 0).ToList();
+
+            var res = registerTopics.Select(x => new RegisterTopicStudent()
+            {
+                StudentId = x.StudentId,
+                TopicId = x.TopicId,
+                TopicName = x.TopicName,
+                TeamId = x.TeamId,
+                TeacherId = x.TeacherId,
+                TeacherName = x.TeacherName,
+                SemesterId = x.SemesterId,
+                SemesterName = x.SemesterName,
+                Status = (evaluation != null && evaluation.Count(e => e.TopicId == x.TopicId) > 0) ? 1 : 0
+            }).ToList();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                var keysearch = keyword.ToLower();
+                res = res.Where(x => x.TopicName.ToLower().Contains(keysearch) || x.TeacherName.ToLower().Contains(keysearch) || x.SemesterName.ToLower().Contains(keysearch)).ToList();
+            }
+            return View(res);
+        }
+
         [HttpGet("list-teacher")]
         public IActionResult ListTeacher([FromQuery] string keyword)
         {
@@ -273,11 +316,10 @@ namespace InternManagement.Controllers
         }
 
         [HttpGet("student-view")]
-        public IActionResult StudentView([FromQuery]int id)
+        public IActionResult StudentView([FromQuery] int? studentId, [FromQuery]int id)
         {
             try
             {
-                var studentId = HttpContext.Session.GetInt32("studentId");
                 if (studentId != null)
                 {
                     var res = new InternshipEvaluationInfo();

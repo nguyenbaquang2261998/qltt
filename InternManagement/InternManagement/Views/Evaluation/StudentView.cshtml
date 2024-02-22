@@ -10,9 +10,7 @@
             <p>Yêu cầu: @Html.Raw(ViewBag.DataInfo.TopicInfo.Content)</p>
             <p>Thời gian: @ViewBag.DataInfo.TopicInfo.Deadline</p>
             <p>Gv hướng dẫn: @Model.TeacherName</p>
-            <b>2. Thông tin sinh viên:</b>
-            <p>@ViewBag.DataInfo.StudentInfo.Name - @ViewBag.DataInfo.StudentInfo.Identity</p>
-            <b>3. Thông tin đánh gia của sinh viên: </b>
+            <b>2. Thông tin đánh gia của sinh viên: </b>
             <p class="mt-5">Đánh giá về người hướng dẫn</p>
             <p>@Html.Raw(Model.EvaluateTeacher)</p>
             <p class="mt-5">Đánh giá về đề tài</p>

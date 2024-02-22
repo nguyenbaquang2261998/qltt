@@ -47,7 +47,7 @@ namespace InternManagement.Controllers
             if (!string.IsNullOrEmpty(keyword))
             {
                 var keysearch = keyword.ToLower();
-                students = students.Where(x => x.UserName.ToLower().Contains(keysearch));
+                students = students.Where(x => x.UserName.ToLower().Contains(keysearch) || x.Identity.ToLower().Contains(keysearch));
             }
             var res = students.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return View(res);
