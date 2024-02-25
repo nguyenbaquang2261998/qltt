@@ -246,8 +246,7 @@ namespace InternManagement.Controllers
                         Id = topicInfo.Id,
                         Name = topicInfo.Name,
                         Content = topicInfo.Content,
-                        TeacherId = topicInfo.TeacherId.Value,
-                        Deadline = topicInfo.Deadline
+                        TeacherId = topicInfo.TeacherId.Value
                     };
                     ViewBag.DataInfo = res;
                 }
@@ -340,8 +339,7 @@ namespace InternManagement.Controllers
                         Id = topicInfo.Id,
                         Name = topicInfo.Name,
                         Content = topicInfo.Content,
-                        TeacherId = topicInfo.TeacherId.Value,
-                        Deadline = topicInfo.Deadline
+                        TeacherId = topicInfo.TeacherId.Value
                     };
                     ViewBag.DataInfo = res;
                 }

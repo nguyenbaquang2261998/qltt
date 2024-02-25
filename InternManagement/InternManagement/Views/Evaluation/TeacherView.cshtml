@@ -8,7 +8,7 @@
         <div class="card-body">
             <b>1. Thông tin đề tài: @ViewBag.DataInfo.TopicInfo.Name</b>
             <p>Yêu cầu: @Html.Raw(ViewBag.DataInfo.TopicInfo.Content)</p>
-            <p>Thời gian: @ViewBag.DataInfo.TopicInfo.Deadline</p>
+            @*<p>Thời gian: @ViewBag.DataInfo.TopicInfo.Deadline</p>*@
             <p>Gv hướng dẫn: @Model.TeacherName</p>
             <b>2. Thông tin sinh viên:</b>
             <p>@ViewBag.DataInfo.StudentInfo.Name - @ViewBag.DataInfo.StudentInfo.Identity</p>

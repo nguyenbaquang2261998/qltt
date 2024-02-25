@@ -21,6 +21,5 @@ namespace InternManagement.DTOs.Evaluation
         public string Name { get; set; }
         public string Content { get; set; }
         public int TeacherId { get; set; }
-        public string Deadline { get; set; }
     }
 }

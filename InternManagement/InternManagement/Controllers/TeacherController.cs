@@ -37,8 +37,8 @@ namespace InternManagement.Controllers
         [HttpGet("detail")]
         public IActionResult Detail([FromQuery] int id)
         {
-            var student = _context.Teachers.Where(x => x.Id == id).FirstOrDefault();
-            return View(student);
+            var teacher = _context.Teachers.Where(x => x.Id == id).FirstOrDefault();
+            return View(teacher);
         }
 
         [HttpGet("create")]

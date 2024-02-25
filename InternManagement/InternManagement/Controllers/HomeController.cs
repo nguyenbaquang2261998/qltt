@@ -37,6 +37,7 @@ namespace InternManagement.Controllers
 
         public IActionResult Fillter(int id)
         {
+            // lấy thông tin kì thực tập
             var semesters = _context.Semesters.ToList();
             ViewBag.DataSemesters = new SelectList(semesters, "Id", "Name");
 

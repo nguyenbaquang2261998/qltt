@@ -12,7 +12,7 @@
                 <div class="mb-3"><label for="content">Nội dung</label>
                 @Html.TextAreaFor(model => model.Content, new { @id = "ckeditor", @class = "form-control" })    
                 </div>
-                <div class="mb-3"><label for="deadline">Kì hạn</label><input asp-for="Deadline" type="text" class="form-control" /></div>
+                @*<div class="mb-3"><label for="deadline">Kì hạn</label><input asp-for="Deadline" type="text" class="form-control" /></div>*@
                 <div class="mb-3">
                     <label for="class">Giảng viên hướng dẫn</label>
                     @Html.DropDownListFor(model => model.TeacherId, ViewBag.DataTeachers as SelectList, new { @class = "form-control" })

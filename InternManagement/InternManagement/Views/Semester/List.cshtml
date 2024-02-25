@@ -28,6 +28,8 @@
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Identity: activate to sort column descending" style="width: 262px;">Id</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 194.5px;">Tên kì thực tập</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 194.5px;">Ngày bắt đầu</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 194.5px;">Ngày kết thúc</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 429.766px;">Mô tả</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Address: activate to sort column ascending" style="width: 100.547px;">Thao tác</th>
                                     </tr>
@@ -38,6 +40,8 @@
                                         <tr role="row" class="odd">
                                             <td class="sorting_1">@item.Id</td>
                                             <td>@item.Name</td>
+                                            <td>@item.FromDate</td>
+                                            <td>@item.ToDate</td>
                                             <td>@item.Description</td>
                                             <td>
                                                 <a href="/semester/update?id=@item.Id" class="zmdi zmdi-assignment display-block-mb-5">Sửa</a>
