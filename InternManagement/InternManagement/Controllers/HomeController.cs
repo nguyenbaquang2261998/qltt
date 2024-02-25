@@ -22,11 +22,13 @@ namespace InternManagement.Controllers
         {
             var res = new List<DashboardView>();
             var topicPassPercents = (from s in _context.Semesters
-                              select new DashboardView()
-                              {
-                                  SemesterName = s.Name,
-                                  StudentRegister = 0
-                              }).ToList();
+                                     join t in _context.Topics on s.Id equals t.SemesterId
+                                     join ts in _context.Teams on t.Id equals ts.TopicId
+                                     select new DashboardView()
+                                     {
+                                         SemesterName = s.Name,
+                                         StudentRegister = _context.RegisterTopics.Count(r => r.TeamId == ts.Id)
+                                     }).ToList();
 
             ViewBag.TopicPassPercents = topicPassPercents;
 
@@ -43,10 +45,12 @@ namespace InternManagement.Controllers
 
             var res = new List<DashboardView>();
             var topicPassPercents = (from s in _context.Semesters
+                                     join t in _context.Topics on s.Id equals t.SemesterId
+                                     join ts in _context.Teams on t.Id equals ts.TopicId
                                      select new DashboardView()
                                      {
                                          SemesterName = s.Name,
-                                         StudentRegister = 0
+                                         StudentRegister = _context.RegisterTopics.Count(r => r.TeamId == ts.Id)
                                      }).ToList();
 
             ViewBag.TopicPassPercents = topicPassPercents;
